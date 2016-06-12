@@ -1,6 +1,4 @@
-# Documentation: https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Formula-Cookbook.md
-#                http://www.rubydoc.info/github/Homebrew/brew/master/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
+# vi: ts=2 et
 
 class Cfm < Formula
   desc "CFM-ID (Competitive Fragmentation Modeling for Metabolite Identification)."
@@ -8,28 +6,25 @@ class Cfm < Formula
   url "svn://svn.code.sf.net/p/cfm-id/code/cfm", :revision => "28"
   version "28"
 
-  # Update references to RDKit.
+  # Update references to RDKit in order to use the one installed using Homebrew.
   patch do
-	  url "https://raw.githubusercontent.com/pierrickrogermele/formula-patches/master/cfm.patch"
-	  sha256 "2b0a4c466a3bb057f955f701da3044e6c24517c91f82345b6e463808078745ed"
+    url "https://raw.githubusercontent.com/pierrickrogermele/formula-patches/master/cfm.patch"
+    sha256 "2b0a4c466a3bb057f955f701da3044e6c24517c91f82345b6e463808078745ed"
   end
 
+  # Allow to install files normally through cmake.
+  patch do
+    url "https://raw.githubusercontent.com/pierrickrogermele/formula-patches/master/cfm-install.patch"
+  end
+  
   # Dependencies
   depends_on "rdkit/rdkit/rdkit" => "with-inchi"
   depends_on "homebrew/science/lp_solve"
   depends_on "cmake" => :build
 
   def install
-	system "cmake ."
-	system "make"
-
-#    # Remove unrecognized options if warned by configure
-#    system "./configure", "--disable-debug",
-#                          "--disable-dependency-tracking",
-#                          "--disable-silent-rules",
-#                          "--prefix=#{prefix}"
-#    # system "cmake", ".", *std_cmake_args
-#    system "make", "install" # if this fails, try separate make/make install steps
+    system "cmake", ".", *std_cmake_args
+    system "make", "install"
   end
 
   test do
