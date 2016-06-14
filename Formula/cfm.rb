@@ -7,14 +7,10 @@ class Cfm < Formula
   version "28"
 
   # Update references to RDKit in order to use the one installed using Homebrew.
+  # Allow to install files normally through cmake.
+  # Embed isotope information (instead of trying to load ISOTOPE.DAT file).
   patch do
     url "https://raw.githubusercontent.com/pierrickrogermele/formula-patches/master/cfm.patch"
-    sha256 "2b0a4c466a3bb057f955f701da3044e6c24517c91f82345b6e463808078745ed"
-  end
-
-  # Allow to install files normally through cmake.
-  patch do
-    url "https://raw.githubusercontent.com/pierrickrogermele/formula-patches/master/cfm-install.patch"
   end
   
   # Dependencies
