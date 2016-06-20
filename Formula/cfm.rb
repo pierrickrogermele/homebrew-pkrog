@@ -93,7 +93,7 @@ class Cfm < Formula
     File.open('testst.txt', 'w') { |file| file.write(spectra) }
     
     # Get trained model file
-    `wget -O param_config.txt https://sourceforge.net/p/cfm-id/code/HEAD/tree/supplementary_material/trained_models/esi_msms_models/metab_se_cfm/param_config.txt?format=raw`
+    system "wget", "-O", "param_config.txt", "https://sourceforge.net/p/cfm-id/code/HEAD/tree/supplementary_material/trained_models/esi_msms_models/metab_se_cfm/param_config.txt?format=raw"
     
     # Test annotation
     system "#{bin}/cfm-annotate", "InChI=1S/C9H7NO2/c11-8-5-9(12)10-7-4-2-1-3-6(7)8/h1-5H,(H2,10,11,12)", "testst.txt", "id", "5", "0.005", "none", "param_config.txt"
