@@ -10,7 +10,8 @@ class Cfm < Formula
   # Allow to install files normally through cmake.
   # Embed isotope information (instead of trying to load ISOTOPE.DAT file).
   patch do
-    url "https://raw.githubusercontent.com/pierrickrogermele/formula-patches/master/cfm.patch"
+    url "https://raw.githubusercontent.com/pierrickrogermele/homebrew-prm/master/patches/cfm-homebrew.patch"
+    sha256 "3c0a740437d96c7694ec769aa958110029754f6e161234c5a18b61fa0c83a1ff"
   end
   
   # Dependencies
