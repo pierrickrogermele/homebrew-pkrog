@@ -8,7 +8,7 @@ index 0000000..d978874
 +.*.swp
 +build
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index a0c1c35..6e69967 100644
+index a0c1c35..55438a2 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -15,7 +15,10 @@ cmake_minimum_required(VERSION 2.6)
@@ -16,7 +16,7 @@ index a0c1c35..6e69967 100644
  project (cfm)
  
 -set (CFM_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin CACHE STRING "Where do you want the output binaries to install to?" )
-+if (NOT MAKE_SYSTEM_NAME STREQUAL "Darwin")
++if (NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 +	set (CFM_OUTPUT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/bin CACHE STRING "Where do you want the output binaries to install to?" )
 +	# For macOS, just use the standard CMAKE_INSTALL_PREFIX variable that you can set on command line. See <https://cmake.org/cmake/help/v3.0/command/install.html>.
 +endif()
@@ -88,7 +88,7 @@ index 3e5d740..b3a564c 100644
 +  endif()
  endif()
 diff --git a/cfm-annotate/CMakeLists.txt b/cfm-annotate/CMakeLists.txt
-index 08cb930..4b0561a 100644
+index 08cb930..5943e07 100644
 --- a/cfm-annotate/CMakeLists.txt
 +++ b/cfm-annotate/CMakeLists.txt
 @@ -12,11 +12,16 @@ set ( SRC_FILES  main.cpp )
@@ -97,7 +97,7 @@ index 08cb930..4b0561a 100644
  
 -install ( TARGETS cfm-annotate 
 -          DESTINATION ${CFM_OUTPUT_DIR} )
-+if (MAKE_SYSTEM_NAME STREQUAL "Darwin")
++if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 +	install ( TARGETS cfm-annotate 
 +          	  DESTINATION bin )
 +else()
@@ -1287,7 +1287,7 @@ index 0e0bff6..3389872 100644
 \ No newline at end of file
 +}
 diff --git a/cfm-id-precomputed/CMakeLists.txt b/cfm-id-precomputed/CMakeLists.txt
-index 96b3926..b795fe5 100644
+index 96b3926..72153a0 100644
 --- a/cfm-id-precomputed/CMakeLists.txt
 +++ b/cfm-id-precomputed/CMakeLists.txt
 @@ -12,11 +12,16 @@ set ( SRC_FILES  main.cpp )
@@ -1296,7 +1296,7 @@ index 96b3926..b795fe5 100644
  
 -install ( TARGETS cfm-id-precomputed 
 -          DESTINATION ${CFM_OUTPUT_DIR} )
-+if (MAKE_SYSTEM_NAME STREQUAL "Darwin")
++if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 +	install ( TARGETS cfm-id-precomputed 
 +          	  DESTINATION bin )
 +else()
@@ -1312,7 +1312,7 @@ index 96b3926..b795fe5 100644
 \ No newline at end of file
 +          
 diff --git a/cfm-id/CMakeLists.txt b/cfm-id/CMakeLists.txt
-index 0540836..e8ad6ec 100644
+index 0540836..0ff5ef5 100644
 --- a/cfm-id/CMakeLists.txt
 +++ b/cfm-id/CMakeLists.txt
 @@ -12,11 +12,16 @@ set ( SRC_FILES  main.cpp )
@@ -1321,7 +1321,7 @@ index 0540836..e8ad6ec 100644
  
 -install ( TARGETS cfm-id 
 -          DESTINATION ${CFM_OUTPUT_DIR} )
-+if (MAKE_SYSTEM_NAME STREQUAL "Darwin")
++if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 +	install ( TARGETS cfm-id 
 +          	  DESTINATION bin )
 +else()
@@ -1337,7 +1337,7 @@ index 0540836..e8ad6ec 100644
 \ No newline at end of file
 +          
 diff --git a/cfm-predict/CMakeLists.txt b/cfm-predict/CMakeLists.txt
-index 52112d8..925dcbf 100644
+index 52112d8..5008265 100644
 --- a/cfm-predict/CMakeLists.txt
 +++ b/cfm-predict/CMakeLists.txt
 @@ -12,11 +12,16 @@ set ( SRC_FILES  main.cpp )
@@ -1346,7 +1346,7 @@ index 52112d8..925dcbf 100644
  
 -install ( TARGETS cfm-predict
 -          DESTINATION ${CFM_OUTPUT_DIR} )
-+if (MAKE_SYSTEM_NAME STREQUAL "Darwin")
++if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 +	install ( TARGETS cfm-predict
 +          	  DESTINATION bin )
 +else()
@@ -1362,7 +1362,7 @@ index 52112d8..925dcbf 100644
 \ No newline at end of file
 +          
 diff --git a/cfm-test/CMakeLists.txt b/cfm-test/CMakeLists.txt
-index 866706e..ca7d162 100644
+index 866706e..1eb02ab 100644
 --- a/cfm-test/CMakeLists.txt
 +++ b/cfm-test/CMakeLists.txt
 @@ -24,11 +24,12 @@ set ( SRC_FILES  test.cpp
@@ -1378,7 +1378,7 @@ index 866706e..ca7d162 100644
 -          
 -          
 \ No newline at end of file
-+if (NOT MAKE_SYSTEM_NAME STREQUAL "Darwin")
++if (NOT CMAKE_SYSTEM_NAME STREQUAL "Darwin")
 +	install ( TARGETS cfm-test 
 +          	  DESTINATION ${CFM_OUTPUT_DIR} )
 +          	  
